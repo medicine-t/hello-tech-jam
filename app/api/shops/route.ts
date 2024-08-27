@@ -51,10 +51,13 @@ export async function GET(request: Request) {
       key,
       format: "json",
       large_area: searchParams.get("large_area") || "Z098",
+      count: searchParams.get("count") || "10",
     });
 
     const keyword = searchParams.get("keyword");
     if (keyword) query.set("keyword", keyword);
+    const count = searchParams.get("count");
+    if (count) query.set("count", count);
 
     const url = `https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?${query.toString()}`;
     const data = await fetchHotpepperData(url);

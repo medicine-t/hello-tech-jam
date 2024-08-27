@@ -7,9 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-async function fetchShops(keyword?: string): Promise<Shop[]> {
+async function fetchShops(
+  keyword?: string,
+  count: number = 10,
+): Promise<Shop[]> {
   const query = new URLSearchParams();
   if (keyword) query.set("keyword", keyword);
+  if (Number.isInteger(count)) query.set("count", count.toString());
 
   try {
     const res = await fetch(`/api/shops?${query.toString()}`);
@@ -32,7 +36,7 @@ const GourmetsClient = ({ initialShops }: { initialShops: Shop[] }) => {
 
   const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
-    const data = await fetchShops(keyword);
+    const data = await fetchShops(keyword, 100);
     setShops(data);
   };
 

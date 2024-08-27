@@ -4,9 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-async function fetchShops(keyword?: string): Promise<Shop[]> {
+async function fetchShops(
+  keyword?: string,
+  count: number = 10,
+): Promise<Shop[]> {
   const query = new URLSearchParams();
   if (keyword) query.set("keyword", keyword);
+  if (Number.isInteger(count) && count != 10)
+    query.set("count", count.toString());
 
   try {
     const res = await fetch(
@@ -30,7 +35,7 @@ export default async function GourmetsPage({
 }: {
   searchParams: { keyword?: string };
 }) {
-  const shops = await fetchShops(searchParams.keyword);
+  const shops = await fetchShops(searchParams.keyword, 100);
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen pt-36 px-8 md:px-12 lg:px-16">
