@@ -1,0 +1,29 @@
+/* styles/Train.module.css */
+.railway {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.train {
+  display: flex;
+  position: absolute;
+  white-space: nowrap;
+  animation: moveTrain 5s linear infinite;
+}
+
+.engine,
+.car {
+  font-size: 2rem;
+  margin-right: 0.2rem;
+}
+
+@keyframes moveTrain {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -100%;
+  }
+}
