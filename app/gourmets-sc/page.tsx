@@ -2,7 +2,6 @@ import { Shop } from "@/types";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 async function fetchShops(keyword?: string): Promise<Shop[]> {
@@ -35,9 +34,6 @@ export default async function GourmetsPage({
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen pt-36 px-8 md:px-12 lg:px-16">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
       <form className="flex items-center space-x-4 mb-8">
         <Input
           type="search"
